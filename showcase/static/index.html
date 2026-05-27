@@ -16,6 +16,7 @@
       </div>
     </div>
     <nav>
+      <a href="#guide">看懂项目</a>
       <a href="#survey">调研结论</a>
       <a href="#method">构建方法</a>
       <a href="#samples">样例体系</a>
@@ -29,8 +30,9 @@
       <div class="hero-copy">
         <p class="eyebrow">Benchmark for Cybersecurity LLMs</p>
         <h1>面向网络安全大模型的通用测评集与评测方案</h1>
-        <p class="lead">CyberEval 以权威安全知识源、统一 SEU 数据单元、多题型样例组织、动态交互任务和模型能力画像为核心，形成可扩展、可复现、可评估的网络安全大模型测评方法。</p>
+        <p class="lead">CyberEval 要解决的是一个直观问题：网络安全大模型到底懂不懂安全、会不会分析风险、能不能给出可靠防御建议。网页把调研、方法、样例和预研工程串起来，让不熟悉测评集的人也能顺着流程看懂。</p>
         <div class="actions">
+          <a class="primary" href="#guide">从零看懂</a>
           <a class="primary" href="#method">查看方法</a>
           <a class="secondary" href="https://github.com/csuhjhjhj/CyberEval-Seed" target="_blank" rel="noreferrer">项目仓库</a>
           <a class="secondary" href="https://github.com/csuhjhjhj/cybersecurity-llm-benchmark-survey" target="_blank" rel="noreferrer">调研仓库</a>
@@ -41,6 +43,25 @@
         <div class="metric"><b>4</b><span>题型结构</span></div>
         <div class="metric"><b>5</b><span>SEU 核心字段</span></div>
         <div class="metric"><b>1000+</b><span>正式样本目标</span></div>
+      </div>
+    </section>
+
+    <section id="guide" class="section">
+      <div class="section-title">
+        <p>Guide</p>
+        <h2>先用四个问题看懂我们在做什么</h2>
+      </div>
+      <div class="guide-layout">
+        <div class="guide-tabs" role="tablist" aria-label="项目说明">
+          <button class="guide-tab active" data-guide="why" type="button">为什么要测</button>
+          <button class="guide-tab" data-guide="what" type="button">测什么能力</button>
+          <button class="guide-tab" data-guide="how" type="button">怎么构建题目</button>
+          <button class="guide-tab" data-guide="report" type="button">结果怎么看</button>
+        </div>
+        <article class="guide-card" id="guide-card">
+          <b>为什么要测</b>
+          <p>普通问答分数不能说明模型是否真正懂网络安全。安全任务往往要求模型识别风险、推理攻击链、给出修复建议，并且不能输出危险细节。</p>
+        </article>
       </div>
     </section>
 
@@ -63,6 +84,19 @@
           <p>网络安全测评集需要同时处理专业性和可公开性，适合采用“公开知识 + 脱敏场景 + 防御导向任务”的构建方式。</p>
         </article>
       </div>
+      <div class="survey-browser">
+        <div class="section-subtitle">
+          <h3>调研内容怎么用到方案里</h3>
+          <p>点击下面的调研主题，可以看到它对应解决什么问题。</p>
+        </div>
+        <div class="survey-tabs" role="tablist" aria-label="调研主题">
+          <button class="survey-tab active" data-survey="frameworks" type="button">通用评测框架</button>
+          <button class="survey-tab" data-survey="datasets" type="button">安全数据集</button>
+          <button class="survey-tab" data-survey="metrics" type="button">评价指标</button>
+          <button class="survey-tab" data-survey="construction" type="button">构建技术</button>
+        </div>
+        <div class="survey-detail" id="survey-detail"></div>
+      </div>
     </section>
 
     <section id="method" class="section band">
@@ -71,12 +105,13 @@
         <h2>测评集构建方法</h2>
       </div>
       <div class="pipeline">
-        <div><b>1. 权威知识源</b><span>CVE/CWE/CVSS、MITRE ATT&CK、OWASP、等保 2.0、密码学与协议安全资料。</span></div>
-        <div><b>2. 知识空间建模</b><span>按领域、知识点、难度、认知层级和任务形态建立覆盖矩阵。</span></div>
-        <div><b>3. SEU 数据单元</b><span>统一组织题干、答案、解析、元数据、评分规则和作答记录。</span></div>
-        <div><b>4. 多题型样例</b><span>选择题、填空题、简答题和动态交互任务协同覆盖不同能力层次。</span></div>
-        <div><b>5. 评测画像</b><span>输出领域、题型、难度、认知层级、静态/动态任务的综合能力报告。</span></div>
+        <button class="flow-step active" data-flow="sources" type="button"><b>1. 权威知识源</b><span>CVE/CWE/CVSS、MITRE ATT&CK、OWASP、等保 2.0、密码学与协议安全资料。</span></button>
+        <button class="flow-step" data-flow="map" type="button"><b>2. 知识空间建模</b><span>按领域、知识点、难度、认知层级和任务形态建立覆盖矩阵。</span></button>
+        <button class="flow-step" data-flow="seu" type="button"><b>3. SEU 数据单元</b><span>统一组织题干、答案、解析、元数据、评分规则和作答记录。</span></button>
+        <button class="flow-step" data-flow="tasks" type="button"><b>4. 多题型样例</b><span>选择题、填空题、简答题和动态交互任务协同覆盖不同能力层次。</span></button>
+        <button class="flow-step" data-flow="portrait" type="button"><b>5. 评测画像</b><span>输出领域、题型、难度、认知层级、静态/动态任务的综合能力报告。</span></button>
       </div>
+      <div class="flow-detail" id="flow-detail"></div>
       <div class="method-grid">
         <article>
           <b>知识图谱辅助构建</b>
@@ -116,23 +151,24 @@
         <h2>样例组织与评测维度</h2>
       </div>
       <div class="cards four">
-        <article>
+        <article class="sample-type active" data-sample="choice">
           <b>选择题</b>
           <span>考查标准概念、术语关系、基础判断，适合自动评分和批量对比。</span>
         </article>
-        <article>
+        <article class="sample-type" data-sample="blank">
           <b>填空题</b>
           <span>考查关键属性、协议机制、安全目标和术语理解，支持语义匹配。</span>
         </article>
-        <article>
+        <article class="sample-type" data-sample="short">
           <b>简答题</b>
           <span>考查风险识别、影响分析和修复建议，采用评分要点累加。</span>
         </article>
-        <article>
+        <article class="sample-type" data-sample="dynamic">
           <b>动态任务</b>
           <span>考查多轮分析、攻击链推理、代码审计和防御决策，记录过程与结果。</span>
         </article>
       </div>
+      <div class="sample-demo" id="sample-demo"></div>
       <div class="matrix">
         <div>
           <h3>能力层级</h3>
@@ -146,6 +182,31 @@
           <h3>质量控制</h3>
           <p>Schema 校验、重复检测、来源核对、难度均衡、专家复核和模型预测试。</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <p>Glossary</p>
+        <h2>几个术语的直白解释</h2>
+      </div>
+      <div class="glossary">
+        <details open>
+          <summary>SEU 是什么？</summary>
+          <p>SEU 可以理解成一条标准化测评样本，不只是一个题干，还包括答案、解析、领域标签、难度、评分规则和模型作答记录。</p>
+        </details>
+        <details>
+          <summary>为什么要有动态任务？</summary>
+          <p>真实安全工作不是只选 A/B/C/D。模型需要连续分析日志、代码或告警，判断风险链条，再给出防御优先级。</p>
+        </details>
+        <details>
+          <summary>为什么强调脱敏？</summary>
+          <p>网络安全题目需要足够专业，但不能把真实攻击载荷、内部系统信息和未公开漏洞细节放进公开样本。</p>
+        </details>
+        <details>
+          <summary>能力画像有什么用？</summary>
+          <p>它不只给一个总分，而是说明模型在哪些安全领域、题型和认知层级上强，在哪些地方短板明显。</p>
+        </details>
       </div>
     </section>
 
