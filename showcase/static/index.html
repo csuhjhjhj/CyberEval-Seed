@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CyberEval 网络安全大模型通用测评集</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">CE</span>
+      <div>
+        <strong>CyberEval</strong>
+        <small>网络安全大模型通用测评集</small>
+      </div>
+    </div>
+    <nav>
+      <a href="#survey">调研结论</a>
+      <a href="#method">构建方法</a>
+      <a href="#samples">样例体系</a>
+      <a href="#seed">预研项目</a>
+      <a href="#roadmap">实施路线</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Benchmark for Cybersecurity LLMs</p>
+        <h1>面向网络安全大模型的通用测评集与评测方案</h1>
+        <p class="lead">CyberEval 以权威安全知识源、统一 SEU 数据单元、多题型样例组织、动态交互任务和模型能力画像为核心，形成可扩展、可复现、可评估的网络安全大模型测评方法。</p>
+        <div class="actions">
+          <a class="primary" href="#method">查看方法</a>
+          <a class="secondary" href="https://github.com/csuhjhjhj/CyberEval-Seed" target="_blank" rel="noreferrer">项目仓库</a>
+          <a class="secondary" href="https://github.com/csuhjhjhj/cybersecurity-llm-benchmark-survey" target="_blank" rel="noreferrer">调研仓库</a>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="metric"><b id="metric-domains">6+</b><span>安全领域</span></div>
+        <div class="metric"><b>4</b><span>题型结构</span></div>
+        <div class="metric"><b>5</b><span>SEU 核心字段</span></div>
+        <div class="metric"><b>1000+</b><span>正式样本目标</span></div>
+      </div>
+    </section>
+
+    <section id="survey" class="section">
+      <div class="section-title">
+        <p>Survey</p>
+        <h2>调研形成的建设判断</h2>
+      </div>
+      <div class="grid three">
+        <article class="finding">
+          <b>发现 1</b>
+          <p>通用大模型评测框架已经较成熟，但网络安全场景需要更细的专业知识划分、可追溯来源依据和面向防御任务的评分规则。</p>
+        </article>
+        <article class="finding">
+          <b>发现 2</b>
+          <p>现有安全类数据集多集中在问答、CTF 或少量漏洞知识，覆盖范围、题型结构、动态交互和中文场景仍有扩展空间。</p>
+        </article>
+        <article class="finding">
+          <b>发现 3</b>
+          <p>网络安全测评集需要同时处理专业性和可公开性，适合采用“公开知识 + 脱敏场景 + 防御导向任务”的构建方式。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="method" class="section band">
+      <div class="section-title">
+        <p>Method</p>
+        <h2>测评集构建方法</h2>
+      </div>
+      <div class="pipeline">
+        <div><b>1. 权威知识源</b><span>CVE/CWE/CVSS、MITRE ATT&CK、OWASP、等保 2.0、密码学与协议安全资料。</span></div>
+        <div><b>2. 知识空间建模</b><span>按领域、知识点、难度、认知层级和任务形态建立覆盖矩阵。</span></div>
+        <div><b>3. SEU 数据单元</b><span>统一组织题干、答案、解析、元数据、评分规则和作答记录。</span></div>
+        <div><b>4. 多题型样例</b><span>选择题、填空题、简答题和动态交互任务协同覆盖不同能力层次。</span></div>
+        <div><b>5. 评测画像</b><span>输出领域、题型、难度、认知层级、静态/动态任务的综合能力报告。</span></div>
+      </div>
+      <div class="method-grid">
+        <article>
+          <b>知识图谱辅助构建</b>
+          <span>将漏洞、弱点、攻击技术、防护措施、标准条款和事件场景组织为实体关系网络，支持多跳推理题和来源追溯。</span>
+        </article>
+        <article>
+          <b>自动生成与人工复核结合</b>
+          <span>模型负责候选题目生成、解析草拟和难度建议，专家复核答案唯一性、表达准确性和评分可执行性。</span>
+        </article>
+        <article>
+          <b>防御导向动态任务</b>
+          <span>通过脱敏告警、代码片段、漏洞摘要和处置约束构造交互式任务，重点评估分析、判断、修复和响应能力。</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <p>SEU</p>
+        <h2>统一数据结构</h2>
+      </div>
+      <div class="seu">
+        <div class="formula">SEU = (Q, O, A, M, E)</div>
+        <div class="seu-grid">
+          <div><b>Q</b><span>Question：题干、题型、答题要求</span></div>
+          <div><b>O</b><span>Options：选择题选项集合</span></div>
+          <div><b>A</b><span>Answer：标准答案、解析、评分要点</span></div>
+          <div><b>M</b><span>Metadata：领域、知识点、难度、认知层级、来源依据</span></div>
+          <div><b>E</b><span>Evaluation：指标、评分规则、模型作答记录</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="samples" class="section band">
+      <div class="section-title">
+        <p>Samples</p>
+        <h2>样例组织与评测维度</h2>
+      </div>
+      <div class="cards four">
+        <article>
+          <b>选择题</b>
+          <span>考查标准概念、术语关系、基础判断，适合自动评分和批量对比。</span>
+        </article>
+        <article>
+          <b>填空题</b>
+          <span>考查关键属性、协议机制、安全目标和术语理解，支持语义匹配。</span>
+        </article>
+        <article>
+          <b>简答题</b>
+          <span>考查风险识别、影响分析和修复建议，采用评分要点累加。</span>
+        </article>
+        <article>
+          <b>动态任务</b>
+          <span>考查多轮分析、攻击链推理、代码审计和防御决策，记录过程与结果。</span>
+        </article>
+      </div>
+      <div class="matrix">
+        <div>
+          <h3>能力层级</h3>
+          <p>C1 知识记忆、C2 理解应用、C3 分析推理、C4 动态交互。</p>
+        </div>
+        <div>
+          <h3>评价指标</h3>
+          <p>准确性、完整性、可解释性、修复可行性、过程一致性和安全合规性。</p>
+        </div>
+        <div>
+          <h3>质量控制</h3>
+          <p>Schema 校验、重复检测、来源核对、难度均衡、专家复核和模型预测试。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <p>Boundary</p>
+        <h2>内容边界与脱敏处理</h2>
+      </div>
+      <div class="boundary-grid">
+        <div class="accept">
+          <b>适合纳入</b>
+          <span>公开标准知识、抽象风险场景、防御性分析、修复建议、脱敏告警序列和合成代码片段。</span>
+        </div>
+        <div class="reject">
+          <b>不进入公开样本</b>
+          <span>真实攻击载荷、未公开漏洞利用细节、内部账号密钥、企业真实日志原文和可直接指导入侵的步骤。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="seed" class="section band">
+      <div class="section-title">
+        <p>Prestudy</p>
+        <h2>CyberEval-Seed 预研项目</h2>
+      </div>
+      <div class="split">
+        <div>
+          <p class="body" id="seed-goal">展示 SEU 统一数据结构、多题型样例组织、覆盖矩阵和轻量评测流程，为 CyberEval 正式测评集建设提供可复现起点。</p>
+          <div class="chips" id="deliverables">
+            <span class="chip">SEU Schema</span>
+            <span class="chip">种子样例</span>
+            <span class="chip">覆盖矩阵</span>
+            <span class="chip">评测脚本</span>
+            <span class="chip">标注规范</span>
+            <span class="chip">内容边界与脱敏策略</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>种子样例分布</h3>
+          <div id="sample-stats" class="stats"></div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>领域</th><th>C1</th><th>C2</th><th>C3</th><th>C4</th><th>目标样本量</th></tr></thead>
+          <tbody id="coverage"></tbody>
+        </table>
+      </div>
+      <div class="links">
+        <a href="https://github.com/csuhjhjhj/CyberEval-Seed" target="_blank" rel="noreferrer">查看 CyberEval-Seed 仓库</a>
+        <a href="https://github.com/csuhjhjhj/cybersecurity-llm-benchmark-survey" target="_blank" rel="noreferrer">查看调研仓库</a>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section">
+      <div class="section-title">
+        <p>Roadmap</p>
+        <h2>实施路线</h2>
+      </div>
+      <div class="timeline">
+        <article><b>2026.04-2026.06</b><span>完成调研报告、SEU Schema、覆盖矩阵、标注规范和种子样例。</span></article>
+        <article><b>2026.07-2026.09</b><span>扩展至 CyberEval V0.5，完成静态评测脚本和多模型预测试。</span></article>
+        <article><b>2026.10-2026.12</b><span>建设动态场景沙箱，覆盖漏洞分析、代码审计、攻击链推理。</span></article>
+        <article><b>2027.01-2027.04</b><span>形成正式测评集、原型系统、复现文档和成果材料，并适配国产化软硬件环境。</span></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>CyberEval Showcase</span>
+    <span>网络安全大模型通用测评集构建技术研究</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

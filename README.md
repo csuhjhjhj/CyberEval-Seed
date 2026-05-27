@@ -1,6 +1,6 @@
 # CyberEval-Seed
 
-CyberEval-Seed 是“网络安全大模型通用测评集构建技术研究”的预研项目，用于验证 CyberEval 正式测评集的核心设计是否可落地。
+CyberEval-Seed 是 CyberEval 网络安全大模型通用测评集的种子项目，用于展示 CyberEval 正式测评集的核心设计、数据结构、样例组织和轻量评测流程。
 
 本项目聚焦三个问题：
 
@@ -24,10 +24,13 @@ CyberEval-Seed/
 ├── docs/
 │   ├── prestudy_plan.md         # 预研计划
 │   ├── annotation_guide.md      # 标注与质量控制规范
-│   └── security_policy.md       # 敏感内容分级与安全边界
-└── scripts/
-    ├── evaluate_seed.py         # 覆盖统计与轻量评分
-    └── validate_dataset.py      # Schema 与字段完整性校验
+│   └── security_policy.md       # 内容边界与脱敏策略
+├── scripts/
+│   ├── evaluate_seed.py         # 覆盖统计与轻量评分
+│   └── validate_dataset.py      # Schema 与字段完整性校验
+└── showcase/
+    ├── app.py                   # 方法展示网页后端
+    └── static/                  # 可静态部署的网页资源
 ```
 
 ## 核心设计
@@ -41,7 +44,7 @@ SEU = (Q, O, A, M, E)
 - Q, Question：题目内容，包括题干、题型、答题要求。
 - O, Options：选项集合，选择题使用，填空题、简答题和动态任务可为空。
 - A, Answer：标准答案、解析和评分规则。
-- M, Metadata：领域、知识点、难度、认知层级、敏感等级和来源说明。
+- M, Metadata：领域、知识点、难度、认知层级、内容边界和来源说明。
 - E, Evaluation：评测指标、评分方式和模型作答记录。
 
 ## 覆盖范围
@@ -75,3 +78,4 @@ scorable_static_samples=2
 - 接入 lm-eval-harness 和 OpenCompass。
 - 增加动态交互沙箱任务。
 - 建设模型能力画像和评测报告生成模块。
+- 建设面向展示和复现的项目网页，集中说明方法链路、样例结构和扩展路线。
