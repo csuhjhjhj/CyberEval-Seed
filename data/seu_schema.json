@@ -1,0 +1,104 @@
+{
+  "title": "Security Evaluation Unit Schema",
+  "type": "object",
+  "required": [
+    "id",
+    "question",
+    "answer",
+    "metadata",
+    "evaluation"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "question": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "single_choice",
+            "fill_blank",
+            "short_answer",
+            "dynamic"
+          ]
+        },
+        "stem": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "properties": {
+        "gold": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "rubric": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "knowledge_point": {
+          "type": "string"
+        },
+        "difficulty": {
+          "enum": [
+            "L1",
+            "L2",
+            "L3"
+          ]
+        },
+        "cognitive_level": {
+          "enum": [
+            "C1",
+            "C2",
+            "C3",
+            "C4"
+          ]
+        },
+        "sensitivity": {
+          "enum": [
+            "L0",
+            "L1",
+            "L2",
+            "L3",
+            "L4"
+          ]
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "properties": {
+        "metric": {
+          "type": "string"
+        },
+        "score_rule": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

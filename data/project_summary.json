@@ -1,0 +1,15 @@
+{
+  "name": "CyberEval-Seed",
+  "subtitle": "网络安全大模型通用测评集预研项目",
+  "goal": "验证 SEU 统一数据结构、多题型样例组织、覆盖矩阵和轻量评测流程，为 CyberEval 正式测评集建设提供可复现起点。",
+  "domains": ["漏洞分析", "密码学", "网络协议安全", "Web安全", "恶意代码分析", "安全合规与治理"],
+  "question_types": ["选择题", "填空题", "简答题", "动态交互任务"],
+  "deliverables": ["SEU Schema", "种子样例", "覆盖矩阵", "评测脚本", "标注规范", "安全分级策略"],
+  "target": {
+    "formal_dataset_size": ">=1000",
+    "domains": ">=6",
+    "static_question_types": ">=3",
+    "dynamic_scenarios": ">=3"
+  },
+  "github": "https://github.com/csuhjhjhj/CyberEval-Seed"
+}
